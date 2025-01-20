@@ -1,0 +1,57 @@
+=======================>Brute force<=========================== 
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int findMin(vector<int>& arr) {
+    int n = arr.size(); // size of the array.
+    int mini = INT_MAX;
+    for (int i = 0; i < n; i++) {
+        // Always keep the minimum.
+        mini = min(mini, arr[i]);
+    }
+    return mini;
+}
+
+int main()
+{
+    vector<int> arr = {4, 5, 6, 7, 0, 1, 2, 3};
+    int ans = findMin(arr);
+    cout << "The minimum element is: " << ans << "\n";
+    return 0;
+}
+
+
+=============================>Optimal Answer<==================
+
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int low = 0, high = nums.size() - 1;
+        int ans = INT_MAX;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            // If the current segment is sorted, update the minimum
+            if (nums[low] <= nums[high]) {
+                ans = min(ans, nums[low]);
+                break;
+            }
+
+            // Check if the left part is sorted
+            if (nums[low] <= nums[mid]) {
+                ans = min(ans, nums[low]);
+                low = mid + 1; // Minimum lies in the right part
+            }
+            // Otherwise, the right part is sorted
+            else {
+                ans = min(ans, nums[mid]);
+                high = mid - 1; // Minimum lies in the left part
+            }
+        }
+
+        return ans;
+    }
+};
