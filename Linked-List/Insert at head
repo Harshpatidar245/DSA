@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+// Node class to represent a single node in the linked list
+class Node
+{
+public:
+    int data; // Data stored in the node
+    Node *next; // Pointer to the next node
+
+    // Constructor to initialize a node with given data
+    Node(int data) {
+        this->data = data; // Assign the given value to the data field
+        this->next = NULL; // Initialize the next pointer to NULL
+    }
+};
+
+// Function to insert a node at the head of the linked list
+void insertAtHead(Node *&head, int d) {
+    // Create a new node with the given data
+    Node *temp = new Node(d);
+    
+    // Point the new node's next pointer to the current head
+    temp->next = head;
+    
+    // Update the head to the new node
+    head = temp;
+}
+
+// Function to print all elements of the linked list
+void print(Node *&head) {
+    // If the list is empty, display a message and return
+    if (head == NULL) {
+        cout << "List is empty " << endl;
+        return;
+    }
+
+    // Traverse the list and print each node's data
+    Node *temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " -> "; // Print the current node's data
+        temp = temp->next; // Move to the next node
+    }
+    cout << "NULL" << endl; // End of the list
+}
+
+// Main function to test the linked list implementation
+int main()
+{
+    // Create the first node of the linked list with data = 10
+    Node *node1 = new Node(10);
+
+    // Initialize the head of the list to point to the first node
+    Node* head = node1;
+
+    // Print the current list
+    print(head);
+
+    // Insert a new node with data = 15 at the head
+    insertAtHead(head, 15);
+
+    // Print the updated list
+    print(head);
+
+    return 0;
+}
