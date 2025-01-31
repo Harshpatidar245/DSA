@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> // For std::max
+
+using namespace std;
+
+int maxConsecutiveOnes(vector<int>& nums) {
+    int maxCount = 0; // To store the maximum count of consecutive 1's
+    int currentCount = 0; // To store the current count of consecutive 1's
+
+    for (int num : nums) {
+        if (num == 1) {
+            currentCount++; // Increment current count if the element is 1
+            maxCount = max(maxCount, currentCount); // Update maxCount if currentCount is greater
+        } else {
+            currentCount = 0; // Reset current count if the element is 0
+        }
+    }
+
+    return maxCount;
+}
+
+int maxConsecutiveZeros(vector<int>& nums) {
+    int maxCount = 0; // To store the maximum count of consecutive 0's
+    int currentCount = 0; // To store the current count of consecutive 0's
+
+    for (int num : nums) {
+        if (num == 0) {
+            currentCount++; // Increment current count if the element is 0
+            maxCount = max(maxCount, currentCount); // Update maxCount if currentCount is greater
+        } else {
+            currentCount = 0; // Reset current count if the element is 1
+        }
+    }
+
+    return maxCount;
+}
+
+int main() {
+    vector<int> binaryArray = {1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1};
+
+    int maxOnes = maxConsecutiveOnes(binaryArray);
+    int maxZeros = maxConsecutiveZeros(binaryArray);
+
+    cout << "Maximum consecutive 1's: " << maxOnes << endl;
+    cout << "Maximum consecutive 0's: " << maxZeros << endl;
+
+    return 0;
+}
