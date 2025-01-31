@@ -1,0 +1,36 @@
+test case 
+
+Examples : 
+
+Input : [1, 2, 4]
+Output : [1, 2, 5]
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> addOne(vector<int> &digits) {
+    int n = digits.size();
+    
+    for (int i = n - 1; i >= 0; --i) {
+        if (digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+        digits[i] = 0; // Set current digit to 0 and move carry to the left
+    }
+    
+    // If all digits were 9, we need an extra digit at the beginning
+    digits.insert(digits.begin(), 1);
+    return digits;
+}
+
+int main() {
+    vector<int> digits = {9, 9, 9}; // Example input
+    vector<int> result = addOne(digits);
+    
+    for (int num : result) cout << num << " ";
+    return 0;
+}
