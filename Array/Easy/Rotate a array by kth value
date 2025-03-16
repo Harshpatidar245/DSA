@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void rotateArray(vector<int>& arr, int k) {
+    int n = arr.size();
+    k = k % n;  // Handle cases where k > n
+
+    reverse(arr.begin(), arr.end());       // Step 1: Reverse entire array
+    reverse(arr.begin(), arr.begin() + k); // Step 2: Reverse first K elements
+    reverse(arr.begin() + k, arr.end());   // Step 3: Reverse last N-K elements
+}
+
+int main() {
+    vector<int> arr = {1, 2, 3, 4, 5, 6, 7};
+    int k = 3;
+
+    rotateArray(arr, k);
+
+    cout << "Rotated Array: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    return 0;
+}
