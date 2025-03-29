@@ -1,0 +1,38 @@
+Example 1:
+Input: Str =  “ABCDCBA”
+Output: Palindrome
+Explanation: String when reversed is the same as string.
+
+Example 2:
+Input: Str = “TAKE U FORWARD”
+Output: Not Palindrome
+Explanation: String when reversed is not the same as string.
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalindrome(string s) {
+    int left = 0, right = s.length() - 1;
+
+    while (left < right) {
+        if (s[left] != s[right])
+            return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+int main() {
+    string str;
+    cin >> str;
+
+    if (isPalindrome(str))
+        cout << "Palindrome" << endl;
+    else
+        cout << "Not Palindrome" << endl;
+
+    return 0;
+}
